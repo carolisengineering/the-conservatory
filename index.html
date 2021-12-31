@@ -23,11 +23,16 @@
 					}
 					fetchIssues()
 				}, [])
+				const {search} = window.location
 				return html`
-					${issues.map(({number, title, body}) => {
+					${issues
+						.filter(({number}) => !search || Number(search.slice(1)) === number)
+						.map(({number, title, body}) => {
 						return html`
 							<div id=${number} key=${number}>
-								<h1>${title}</h1>
+								<h1>
+								  <a href="?${number}"> ${title}</a>
+								</h1>
 								<div dangerouslySetInnerHTML="${{__html: marked(body)}}" />
 							</div>
 							`
