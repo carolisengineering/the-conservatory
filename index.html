@@ -9,24 +9,24 @@
 			import marked from 'https://unpkg.com/marked@2.0.0/lib/marked.esm.js'
 			const html = htm.bind(React.createElement)
 			const TOKEN = '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'
-			const seedlings = (props) => {
-				const [issues, setIssues] = React.useState([])
+			const my_plot = (props) => {
+				const [seedlings, setSeedlings] = React.useState([])
 				React.useEffect(() => {
-					async function fetchIssues() {
+					async function plantSeedlings() {
 						const {url, ...options} = endpoint('GET /repos/:owner/:repo/issues', {
 							owner: 'carolisengineering',
 							repo: 'the-conservatory',
 							auth: TOKEN
 						})
 						const response = await fetch(url, options)
-						const issues = await response.json()
-						setIssues(issues)
+						const seedlings = await response.json()
+						setSeedlings(seedlings)
 					}
-					fetchIssues()
+					plantSeedlings()
 				}, [])
 				const {search} = window.location
 				return html`
-					${issues
+					${seedlings
 						.filter(({number}) => !search || Number(search.slice(1)) === number)
 						.map(({number, title, body}) => {
 						return html`
@@ -40,7 +40,7 @@
 					})} 	
 				`
 			}	
-			ReactDOM.render(html` <${seedlings} /> `, document.body)
+			ReactDOM.render(html` <${my_plot} /> `, document.body)
 		</script>
 	</head>
 	<body></body>
