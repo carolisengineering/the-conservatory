@@ -21,18 +21,22 @@ const my_plot = (props) => {
   }, [])
   const {search} = window.location
   return html`
+    <div class="welcome">
+      <h1>welcome to the conservatory</h1>
+      <h1>please explore</h1>
+    </div>
     ${seedlings
       .filter(({number}) => !search || Number(search.slice(1)) === number)
       .map(({number, title, body}) => {
       return html`
         <div id=${number} key=${number}>
-          <h1>
+          <h2>
             <a href="?${number}" target="_blank"> ${title}</a>
-          </h1>
+          </h2>
           <div dangerouslySetInnerHTML="${{__html: marked(body)}}" />
         </div>
       `
     })}
   `
 }
-ReactDOM.render(html` <${my_plot} /> `, document.body)
+ReactDOM.render(html` <${my_plot}/> `, document.body)
