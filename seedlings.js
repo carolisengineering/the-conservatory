@@ -27,11 +27,11 @@ const my_plot = (props) => {
       return html`
         <div id=${number} key=${number}>
           <h1>
-            <a href="?${number}"> ${title}</a>
+            <a href="?${number}" target="_blank"> ${title}</a>
           </h1>
           <div dangerouslySetInnerHTML="${{__html: marked(body)}}" />
         </div>
-        `
+      `
     })}
   `
 }
