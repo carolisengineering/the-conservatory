@@ -1,4 +1,4 @@
-h3 {
+h2 {
     color: #12685e;
 }
 
@@ -21,4 +21,10 @@ a:link {
 
 a:visited {
   color: #c1666b;
+}
+
+.welcome {
+  text-align: center;
+  color: #c1666b;
+  padding: 5px;
 }
